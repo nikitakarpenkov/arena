@@ -13,8 +13,10 @@ async function handler(req, res, next) {
       jobCounts = await queue.checkHealth();
       delete jobCounts.newestJob;
     } else {
+      console.log('jobCounts');
       jobCounts = await queue.getJobCounts();
     }
+    console.log('getStats');
     const stats = await QueueHelpers.getStats(queue);
 
     return res.render('dashboard/templates/queueDetails', {
